@@ -111,7 +111,7 @@ class EVOBOM():
         print("Writing BOM CSV...")
         BOMImportDir = "\\\\Erp\\dbamfg\\IMPORT\\BOM.csv"
         with open(BOMImportDir, "w") as file:
-            file.write("Product Code (Part Number),Product Class,Type (NRMFABLTKO),Stock Unit of Measure\n")
+            file.write("Parent Part Code,Line Number,Component Part Code,Quantity Required\n")
             file.write("DO NOT REARRANGE THE ORDER OF THE COLUMNS IN THE FILE\n")
             
             for part in self.partsList:

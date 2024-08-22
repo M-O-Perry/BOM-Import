@@ -23,7 +23,7 @@ def getInputs():
     topBOM = None
     
     
-    file = filedialog.askopenfilename()
+    file = filedialog.askopenfilename(title = "Select BOM File", initialdir="\\\\FS2\\engineer\\WORK\\Outdwg\\SolidworksBomOutputs")
     if file == "":
         quitProgram()
     
@@ -108,7 +108,12 @@ def runSolidworksUpload(topBOM, file):
 
     newBOM.loadBomCheck()
 
-    messagebox.showinfo("Verify", "Please verify the parts in the inventory before continuing.\nPress OK to continue.")
+    # messagebox.showinfo("Verify", "Please verify the parts in the inventory before continuing.\nPress OK to continue.")
+    BOMGood = messagebox.askquestion("Verify", "Please verify the parts in the inventory before continuing.\nUpload BOM to server?", icon = "warning")
+    
+    if BOMGood == "no":
+        quitProgram()
+    
     time.sleep(1)
     
     send([0.5, "alt x", 0.5, "alt x", 0.5])
