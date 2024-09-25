@@ -18,6 +18,11 @@ class EVOBOM():
         
         
     def getAllParts(self):
+        '''
+        read the BOM file and get all of the parts
+        
+        '''
+        
         print("Reading BOM file", self.filename, end="...\n")
         
         wb = load_workbook(self.filename)
@@ -46,10 +51,12 @@ class EVOBOM():
             partType = str(ws["L" + str(row)].value).strip()
             
             
-            qty = str(ws["L" + str(row)].value)
+            qty = str(ws["M" + str(row)].value)
             
             description = abreviateWords(description)
             specs = abreviateWords(specs)
+            
+            # cleaning up all of the information from excel
             
             if isNone(specs):
                 specs = ""
@@ -110,6 +117,7 @@ class EVOBOM():
         
         print("Writing BOM CSV...")
         BOMImportDir = "\\\\Erp\\dbamfg\\IMPORT\\BOM.csv"
+        
         with open(BOMImportDir, "w") as file:
             file.write("Parent Part Code,Line Number,Component Part Code,Quantity Required\n")
             file.write("DO NOT REARRANGE THE ORDER OF THE COLUMNS IN THE FILE\n")

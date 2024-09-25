@@ -22,17 +22,25 @@ def getInputs():
     
     topBOM = None
     
+    # get the desired bom file
     
     file = filedialog.askopenfilename(title = "Select BOM File", initialdir="\\\\FS2\\engineer\\WORK\\Outdwg\\SolidworksBomOutputs")
     if file == "":
         quitProgram()
+        
+    # Checking for solidworks export file
     
     if file.endswith(".xlsm"):
         wb = load_workbook(file)
         ws = wb.active
         
+        # read the last row of column A to get the top BOM number
+        
         topBOM = ws["A" + str(ws.max_row)].value
         isAutoCad = False
+        
+        
+    # Checking for autocad export file
     
     elif file.endswith(".xls"):
         wb = xlrd.open_workbook(file)
@@ -53,6 +61,8 @@ def getInputs():
     else:
         messagebox.showerror("Error", "Invalid file type. Please select an Excel file.")
         quitProgram()
+        
+        
 
     if topBOM is None:
         print("Unable to auto detect top BOM number.")
@@ -62,6 +72,8 @@ def getInputs():
         quitProgram()
     
     # proper topBOM format: 1234-5A-6789
+    
+    # certain checks to ensure the top BOM number is in the correct format
     
     while len(topBOM) != 12 or topBOM[4] != "-" or topBOM[7] != "-" or not topBOM[:4].isdigit() or not topBOM[5].isdigit() or not topBOM[6].isalpha() or not topBOM[8:].isdigit():
         messagebox.showerror("Error", "Invalid top BOM number. Please enter the top BOM number in the format 1234-5A-6789.\nYou entered: " + topBOM)
@@ -76,6 +88,7 @@ def getInputs():
 
 
 topBOM, file = getInputs()
+
 
 def runSolidworksUpload(topBOM, file):
     startTime = time.time()
