@@ -35,6 +35,7 @@ def openEnterInventory(closeINB = True):
         if closeINB:
             send([1, "alt x", 1])
         else:
+            send([4])
             return
         
     openTASProgram("INB")

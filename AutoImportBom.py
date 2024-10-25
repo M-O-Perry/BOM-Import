@@ -4,6 +4,7 @@ print("Loading Application...")
 import time
 import tkinter as tk
 from tkinter import filedialog, simpledialog, messagebox
+from ctypes import  (WinDLL)
 
 from PlayActions import send_keys as send
 from openpyxl import load_workbook
@@ -11,6 +12,16 @@ from AutocadBOM import AutocadBOM
 from EVOBOM import EVOBOM
 from EVOUtil import quitProgram
 import xlrd
+
+user32 = WinDLL('user32')
+gks = user32.GetKeyState
+
+capslock = gks(0x14)
+
+if capslock == 1:
+    import pyautogui
+    pyautogui.press("capslock")
+
 
 isAutoCad = False
 

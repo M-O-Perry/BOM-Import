@@ -7,7 +7,7 @@ from tkinter import messagebox
     
 def send_keys(keys, repeat = 1, interval = 0.1):
     keywords = "ctrl shift alt win".split(" ")
-    actionwords = "enter esc down up left right tab space".split(" ")
+    actionwords = "enter esc down up left right tab space capslock".split(" ")
 
     try:
         for i in range(repeat):

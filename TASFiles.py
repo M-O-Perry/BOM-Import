@@ -3,7 +3,7 @@ class TASFileReferences:
         
         self.references = {
             "INA" : ("\\\\ERP\\dbamfg\\T7INA.RWN", 10),
-            "INB" : ("\\\\ERP\\dbamfg\\T7INB.RWN", 10),
+            "INB" : ("\\\\ERP\\dbamfg\\T7INB.RWN", 18),
             
             "ImportBom" : ("\\\\ERP\\dbamfg\\T7DECB.RWN", 20),
             "BomErrorReport" : ("\\\\ERP\\dbamfg\\T7DECC.RWN", 4),
